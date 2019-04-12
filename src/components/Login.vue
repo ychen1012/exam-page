@@ -1,5 +1,5 @@
 <template>
-  <el-form :rules="rules" class="login-container" label-position="left"
+  <el-form  class="login-container" label-position="left"
            label-width="0px" v-loading="loading">
     <h3 class="login_title">系统登录</h3>
     <el-form-item prop="account">
@@ -15,7 +15,7 @@
     <router-link to="/admin">管理员登录</router-link>
     <router-link to="manage">管理页面示例</router-link>
     <el-form-item style="width: 100%">
-      <el-button type="primary" style="width: 100%" @click="submitClick">登录</el-button>
+      <el-button type="primary" style="width: 100%" @click="login">登录</el-button>
     </el-form-item>
   </el-form>
 </template>
@@ -29,31 +29,57 @@
         },
         checked: true,
         loginForm: {
-          username: 'admin',
-          password: '123'
+
         },
         loading: false
       }
     },
     methods: {
-      submitClick: function () {
-        var _this = this;
-        this.loading = true;
-        this.postRequest('/login', {
-          username: this.loginForm.username,
-          password: this.loginForm.password
-        }).then(resp=> {
-          _this.loading = false;
-          if (resp && resp.status == 200) {
-            var data = resp.data;
-            _this.$store.commit('login', data.obj);
-            var path = _this.$route.query.redirect;
-            _this.$router
-              .replace({path: path == '/' || path == undefined ? '/home' : path});
+      // submitClick: function () {
+      //   var _this = this;
+      //   this.loading = true;
+      //   this.getRequst('/login', {
+      //     username: this.loginForm.username,
+      //     password: this.loginForm.password
+      //   }).then(resp=> {
+      //     _this.loading = false;
+      //     if (resp && resp.status == 200) {
+      //       var data = resp.data;
+      //       _this.$store.commit('login', data.obj);
+      //       var path = _this.$route.query.redirect;
+      //       _this.$router
+      //         .replace({path: path == '/' || path == undefined ? '/home' : path});
+      //     }
+      //   });
+      // },
+
+      login:function () {
+
+        const axios = require('axios');
+        axios.get('/api/user/student/login', {
+          params: {
+            studentId:this.loginForm.username,
+            password:this.loginForm.password
           }
-        });
+        })
+          .then(function (response) {
+            if (response.data.code==="A0000"){
+              alert(response.data.msg);
+            } else {
+              alert(response.data.msg)
+              console.log(response.data.code);
+
+            }
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+
+
+        }
+
       }
-    }
+
   }
 </script>
 <style>
