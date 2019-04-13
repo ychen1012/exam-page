@@ -1,12 +1,12 @@
 <template>
-  <el-form  class="login-container" label-position="left"
+  <el-form :model="loginForm"  :rules="rules" class="login-container" label-position="left"
            label-width="0px" v-loading="loading">
     <h3 class="login_title">系统登录</h3>
-    <el-form-item prop="account">
+    <el-form-item prop="username">
       <el-input type="text" v-model="loginForm.username"
                 auto-complete="off" placeholder="账号"></el-input>
     </el-form-item>
-    <el-form-item prop="checkPass">
+    <el-form-item prop="password">
       <el-input type="password" v-model="loginForm.password"
                 auto-complete="off" placeholder="密码"></el-input>
     </el-form-item>
@@ -20,15 +20,19 @@
   </el-form>
 </template>
 <script>
+  import manage from "./manage";
+
   export default{
     data(){
       return {
         rules: {
-          account: [{required: true, message: '请输入用户名', trigger: 'blur'}],
-          checkPass: [{required: true, message: '请输入密码', trigger: 'blur'}]
+          username: [{required: true, message: '请输入用户名', trigger: 'blur'}],
+         password: [{required: true, message: '请输入密码', trigger: 'blur'}]
         },
         checked: true,
         loginForm: {
+          username:'',
+          password:'',
 
         },
         loading: false
@@ -54,6 +58,9 @@
       // },
 
       login:function () {
+      this. loading=true;
+      //内部函数调用外部的变量
+      var self=this;
 
         const axios = require('axios');
         axios.get('/api/user/student/login', {
@@ -64,9 +71,19 @@
         })
           .then(function (response) {
             if (response.data.code==="A0000"){
-              alert(response.data.msg);
+              // alert(response.data.msg);
+              self.$router.push(
+                '/manage');
             } else {
-              alert(response.data.msg)
+
+              // alert(response.data.msg)
+              // this.loading=false;
+              self.loading=false;
+              self.$notify.error({
+                title:'登录失败',
+                message:response.data.msg,
+
+              });
               console.log(response.data.code);
 
             }
