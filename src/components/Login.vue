@@ -73,7 +73,7 @@
             if (response.data.code==="A0000"){
               // alert(response.data.msg);
               self.$router.push(
-                '/manage');
+                '/detail');
             } else {
 
               // alert(response.data.msg)
