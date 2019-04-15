@@ -3,7 +3,28 @@
     <div>
       <el-row :gutter="10">
         <el-col :span="4"><div class="grid-content bg-purple">
-           <el-button>添加学生</el-button>
+           <el-button  @click="dialogTableVisible = true">添加学生</el-button>
+
+<!--弹出表单-->
+          <el-dialog title="添加学生" :visible.sync="dialogTableVisible">
+            <el-form :model="form">
+              <el-form-item label="学号" :label-width="formLabelWidth">
+                <el-input v-model="form.studentId" auto-complete="off"></el-input>
+              </el-form-item>
+
+              <el-form-item label="班级" :label-width="formLabelWidth">
+                <el-input v-model="form.class" auto-complete="off"></el-input>
+              </el-form-item>
+
+              <el-form-item label="姓名" :label-width="formLabelWidth">
+                <el-input v-model="form.name" auto-complete="off"></el-input>
+              </el-form-item>
+            </el-form>
+            <div slot="footer" class="dialog-footer">
+              <el-button @click="dialogTableVisible=false">取消</el-button>
+              <el-button type="primary" @click="dialogTableVisible=false">确定</el-button>
+            </div>
+          </el-dialog>
         </div></el-col>
         <el-col :span="1"><div class="grid-content bg-purple">
           <el-button>导入</el-button>
@@ -32,10 +53,7 @@
       <el-table-column
         align="right">
         <template slot="header" slot-scope="scope">
-<!--          <el-input-->
-<!--            v-model="search"-->
-<!--            size="mini"-->
-<!--            placeholder="输入关键字搜索"/>-->
+
           <el-table-column
             label="编辑" align="right"></el-table-column>
         </template>
@@ -47,7 +65,7 @@
           <el-button
             size="mini"
             type="danger"
-            @click="handleDelete(scope.$index, scope.row)">Delete</el-button>
+            @click="handleDelete(scope.$index, scope.studentId)">Delete</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -95,9 +113,27 @@
           zip: 200333,
           class:'软工1503',
           number:'2015011446'
-        }]
+        }],
+
+        form: {
+          studentId: '',
+          name: '',
+          class: '',
+        },
+        formLabelWidth: '120px',
+        dialogTableVisible: false,
+      }
+    },
+
+    methods:{
+      handleEdit(){
+        alert("handleEdit")
+      },
+      handleDelete(a,b){
+          alert(this);
       }
     }
+
   }
 </script>
 
