@@ -37,7 +37,7 @@
     </div>
     <el-table
       :data="tableData.filter(data => !search || data.name.toLowerCase().includes(search.toLowerCase()))"
-      style="width: 100%">
+      style="width: 100%" >
       <el-table-column
         label="学号"
         prop="number">
@@ -58,18 +58,19 @@
             label="编辑" align="right"></el-table-column>
         </template>
 
-        <template slot-scope="scope">
+        <template >
           <el-button
             size="mini"
-            @click="handleEdit(scope.$index, scope.row)">Edit</el-button>
+            @click="handleEdit()">Edit</el-button>
           <el-button
             size="mini"
             type="danger"
-            @click="handleDelete(scope.$index, scope.studentId)">Delete</el-button>
+            @click="handleDelete()">Delete</el-button>
         </template>
       </el-table-column>
     </el-table>
-  </div>
+    </div>
+
 
 </template>
 
@@ -129,8 +130,8 @@
       handleEdit(){
         alert("handleEdit")
       },
-      handleDelete(a,b){
-          alert(this);
+      handleDelete(){
+          alert("111!!");
       }
     }
 

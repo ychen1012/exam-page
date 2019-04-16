@@ -1,6 +1,6 @@
 <template>
   <el-row class="container" style="height: 100%">
-<!--    <v-header :user="user"></v-header>-->
+    <v-header :user="user"></v-header>
     <el-col :span="24" class="main">
       <el-row>
         <el-menu :default-active="$route.path" class="mar-l el-menu-vertical-demo el-col el-col-3" light router>
@@ -20,11 +20,15 @@
   </el-row>
 </template>
 <script>
+  import header from "./header/header";
+
   const ERR_OK = "000";
   export default {
     data () {
       return {
-        user: {}
+        user: {
+          name:'yangchen'
+        }
       };
     },
     created () {
@@ -40,6 +44,10 @@
         this.$router.push({path: '/index'})
       }
     },
+
+    components:{
+      'v-header':header
+    }
 
   };
 </script>

@@ -8,6 +8,10 @@ import Index from "../components/Index";
 import Form from "../components/Form";
 import ue from "../components/ue";
 import Detail from "../components/Detail";
+import studentIndex from "../components/student/studentIndex";
+import exam from "../components/student/exam";
+import examInfo from "../components/student/examInfo";
+import score from "../components/student/score";
 
 
 
@@ -36,13 +40,24 @@ export default new Router({
       path:'/detail',
       component:Detail,
       children:[
-        {path: '/tt', component: Table, name: 'ssss'},
+        {path: '/question', component: Table, name: '题目管理'},
         {path: '/index', component: Index, name: 'index'},
-        {path: '/form', component: Form, name: '学生管理'},
+        {path: '/studentManager', component: Form, name: '学生管理'},
         {path: '/editor', component: ue, name: 'editor'}
 
       ]
 
+    },
+
+    {
+      path: '/student',
+      component: studentIndex,
+      children:[
+        {path: '/exam',component:exam,name:'开始做答'},
+        {path: '/examInfo',component:examInfo,name:'考试查询'},
+        {path: '/score' ,component:score,name:'成绩查询'}
+
+]
     }
   ]
 })
