@@ -13,14 +13,13 @@
     <el-checkbox class="login_remember" v-model="checked"
                  label-position="left">记住密码</el-checkbox>
     <router-link to="/admin">管理员登录</router-link>
-    <router-link to="manage">管理页面示例</router-link>
+
     <el-form-item style="width: 100%">
       <el-button type="primary" style="width: 100%" @click="login">登录</el-button>
     </el-form-item>
   </el-form>
 </template>
 <script>
-  import manage from "./manage";
 
   export default{
     data(){

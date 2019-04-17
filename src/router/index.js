@@ -2,7 +2,6 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Login from "../components/Login";
 import TeacherLogin from "../components/TeacherLogin";
-import manage from "../components/manage";
 import Table from "../components/Table";
 import Index from "../components/Index";
 import Form from "../components/Form";
@@ -12,7 +11,6 @@ import studentIndex from "../components/student/studentIndex";
 import exam from "../components/student/exam";
 import examInfo from "../components/student/examInfo";
 import score from "../components/student/score";
-
 
 
 Vue.use(Router)
@@ -30,11 +28,7 @@ export default new Router({
       name:"admin_login",
       component:TeacherLogin
     },
-    {
-      path:"/manage",
-      name:"management",
-      component:manage
-    },
+    
 
     {
       path:'/detail',
