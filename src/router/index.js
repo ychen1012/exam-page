@@ -28,16 +28,16 @@ export default new Router({
       name:"admin_login",
       component:TeacherLogin
     },
-    
+
 
     {
       path:'/detail',
       component:Detail,
       children:[
         {path: '/question', component: Table, name: '题目管理'},
-        {path: '/index', component: Index, name: 'index'},
+        {path: '/index', component: Index, name: '考试管理'},
         {path: '/studentManager', component: Form, name: '学生管理'},
-        {path: '/editor', component: ue, name: 'editor'}
+        {path: '/editor', component: ue, name: '成绩管理'}
 
       ]
 

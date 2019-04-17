@@ -250,10 +250,10 @@
       download: function () {
         console.log("xiazai");
         var obj = document.getElementById('download');
-        var str = "姓名,出生日期,地址\n";
+        var str = "学号,姓名,班级,专业\n";
         for (var i = 0; i < this.tableData.length; i++) {
           var item = this.tableData[i];
-          str += item.name + ',' + item.date + ',' + item.address;
+          str += item.studentId + ',' + item.name + ',' + item.grade+','+item.major;
           str += "\n";
         }
         console.log(obj);
