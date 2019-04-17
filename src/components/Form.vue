@@ -141,12 +141,7 @@
 <!--js逻辑部分-->
 <script>
   const axios =require('axios');
-  // axios.get('/api/exam/question/all').then(function (response) {
-  //   if (response.data.code === "A0000") {
-  // this.tableData=response.data.data;
-  //    console.log(this.tableData);
-  //   }
-  // });
+
   export default {
     data() {
       return {
@@ -206,6 +201,20 @@
         })
       },
 
+      addUsers(studentId,name,grade,major){
+         console.log("chine");
+        axios.post('/api/student/add',{
+          studentId:studentId,
+          name:name,
+          grade:grade,
+          major:major
+        }).then(function (response) {
+          console.log(response);
+          console.log("bbbbbb");
+
+        })
+      },
+
 
       onSubmit() {
         this.$message('模拟数据，这个方法并不管用哦~');
@@ -229,13 +238,13 @@
           cancelButtonClass: 'cancel'
         }).then(() => {
           this.editLoading = true;
-          let date = this.form.date;
-          if (typeof date === "object") {
-            date = [date.getFullYear(), (date.getMonth() + 1), (date.getDate())].join('-');
-            this.form.date = date
-          }
-//          this.tableData[this.table_index] = this.form;
+          // let questionName = this.form.questionName;
+
+          this.tableData[this.table_index] = this.form;
           this.tableData.splice(this.table_index, 1, this.form);
+          this.addUsers(this.form.studentId,this.form.name,this.form.grade,this.form.major);
+
+
           console.log(this.form.name);
           this.$message({
             message: "操作成功！",
