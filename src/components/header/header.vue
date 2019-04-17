@@ -33,8 +33,7 @@
 <style scoped>
   header {
     background-color: rgb(32, 160, 255);
-    height: 80px;
-    position: absolute;
+    height: 70px;
     width: 100%;
     top: 0;
     left: 0;
