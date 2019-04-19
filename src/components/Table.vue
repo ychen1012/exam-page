@@ -175,7 +175,7 @@
   //   })
   // },
 
-    mounted:function(){
+    created:function(){
       this.getUsers();
     },
 

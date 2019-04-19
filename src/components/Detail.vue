@@ -21,6 +21,7 @@
 </template>
 <script>
   import header from "./header/header";
+  import Headers from "./header/headers";
 
   const ERR_OK = "000";
   export default {
@@ -46,6 +47,7 @@
     },
 
     components:{
+      Headers,
       'v-header':header
     }
 

@@ -5,9 +5,12 @@ import App from './App'
 import router from './router'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
+import Utils from "./util/utils";
+import E from "wangeditor";
 
 Vue.config.productionTip = false
 Vue.use(ElementUI)
+Vue.prototype.Utils =Utils
 
 /* eslint-disable no-new */
 new Vue({
