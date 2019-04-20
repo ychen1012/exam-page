@@ -1,10 +1,14 @@
 <template>
   <div>
-    <quill-editor ref="TextEditor"
-                  v-model="article.content"
-                  :options="editorOption">
-    </quill-editor>
-    <el-button type="primary" @click="editArticle('articleForm')">确 定</el-button>
+    <div>
+      <p v-model="question">{{question}}</p>
+      <quill-editor ref="TextEditor"
+                    v-model="article.content"
+                    :options="editorOption">
+      </quill-editor>
+      <el-button type="primary" @click="editArticle('articleForm')">确 定</el-button>
+    </div>
+
   </div>
 </template>
 
@@ -24,8 +28,10 @@
           title: '',
           author: '',
           content: '',
-          status: 0
+          status: 0,
+
         },
+        question: 'aaaaaaaaa',
         articleFormVisible: false,
         rowIndex: 9999,
         editorOption: {
@@ -66,8 +72,12 @@
 <style lang="scss" scoped>
 
     .quill-editor {
-      height: 300px;
+      height: 250px;
       margin-bottom: 20px;
     }
+
+  .el-button{
+    margin-top: 20px;
+  }
 
 </style>
